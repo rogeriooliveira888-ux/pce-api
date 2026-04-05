@@ -36,6 +36,13 @@ def root():
 def validate(data: InputData):
     value = data.value
 
+    # 🔴 NOVO: Validação de domínio
+    if value < 0 or value > 1:
+        return {
+            "status": "INVALID_INPUT",
+            "detail": "Value must be between 0 and 1"
+        }
+
     status = pce_layer(value)
     ois = ois_layer(value)
     sel = sel_layer(value)
